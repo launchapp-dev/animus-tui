@@ -1,0 +1,21 @@
+schema = "animus.plugin.v1"
+
+[plugin]
+id = "launchapp-dev/animus-tui"
+name = "animus-tui"
+version = "0.1.0"
+kind = "binary"
+description = "Terminal control plane for the Animus daemon"
+homepage = "https://github.com/launchapp-dev/animus-tui"
+license = "MIT"
+
+[binary]
+name = "animus-tui"
+entrypoint = "animus-tui"
+
+[install]
+# Generic binary install: the release pipeline publishes per-target tarballs
+# named animus-tui-<target>.tar.gz. `animus plugin install
+# launchapp-dev/animus-tui@v0.1.0` downloads + extracts into
+# ~/.animus/plugins/animus-tui/. Users invoke `animus-tui` from their shell.
+post_install_hint = "Run `animus-tui` from any project root with a running daemon."

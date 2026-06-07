@@ -1,0 +1,47 @@
+[package]
+name = "animus-tui"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+authors = ["Launchapp.dev"]
+description = "Terminal control plane for the Animus daemon — k9s-style UI for workflows, queue, subjects, logs, and cost"
+homepage = "https://github.com/launchapp-dev/animus-tui"
+repository = "https://github.com/launchapp-dev/animus-tui"
+readme = "README.md"
+
+[lib]
+name = "animus_tui"
+path = "src/lib.rs"
+
+[[bin]]
+name = "animus-tui"
+path = "src/main.rs"
+
+[dependencies]
+ratatui = "0.29"
+crossterm = "0.28"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "signal", "sync", "time", "io-util", "net", "fs"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+anyhow = "1"
+thiserror = "1"
+clap = { version = "4", features = ["derive"] }
+chrono = { version = "0.4", features = ["serde", "clock"] }
+dirs = "5"
+unicode-width = "0.2"
+async-trait = "0.1"
+sha2 = "0.10"
+futures = "0.3"
+
+animus-control-protocol = { git = "https://github.com/launchapp-dev/animus-protocol", tag = "v0.5.6", features = ["client"] }
+animus-subject-protocol = { git = "https://github.com/launchapp-dev/animus-protocol", tag = "v0.5.6" }
+animus-log-storage-protocol = { git = "https://github.com/launchapp-dev/animus-protocol", tag = "v0.5.6" }
+
+[dev-dependencies]
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "test-util"] }
+async-trait = "0.1"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true
