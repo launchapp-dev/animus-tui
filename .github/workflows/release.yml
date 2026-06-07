@@ -29,10 +29,9 @@ jobs:
             target: aarch64-unknown-linux-gnu
             archive: tar.gz
             cross: true
-          # x86_64-apple-darwin intentionally excluded — Intel Mac runner queue
-          # is jammed for the launchapp-dev org. The Apple Silicon target
-          # ships first; we'll add x86_64 back once Intel runner capacity
-          # frees up.
+          - os: macos-15-intel
+            target: x86_64-apple-darwin
+            archive: tar.gz
           - os: macos-latest
             target: aarch64-apple-darwin
             archive: tar.gz
